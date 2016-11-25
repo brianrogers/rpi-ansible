@@ -1,0 +1,38 @@
+- hosts: all
+  become: true
+
+  roles:
+    - raspbian_bootstrap
+    - firewall
+
+  vars:
+    ansible_user: "pi"
+    ansible_ssh_private_key_file: "keys/id_rsa"
+    rpi_ssh_pubkey: "{{ lookup('file', 'keys/id_rsa.pub') }}"
+
+    rpi_set_hostname: false
+    rpi_set_locale: true
+    rpi_set_timezone: true
+    rpi_set_ntp: true
+    rpi_hostname: "{{ inventory_hostname }}"
+    rpi_default_locale: "en_US.UTF-8"
+    rpi_locales:
+      - "en_US.UTF-8"
+    rpi_timezone: "US/Chicago"
+
+    rpi_ntp_hosts:
+      - "0.fi.pool.ntp.org"
+      - "1.fi.pool.ntp.org"
+      - "2.fi.pool.ntp.org"
+      - "3.fi.pool.ntp.org"
+    rpi_ntp_pkg: "ntp"
+
+    rpi_apt_default_host: "mirrordirector.raspbian.org"
+    rpi_apt_components: "main contrib non-free rpi"
+    open_ports:
+      - "ssh"
+
+  vars_prompt:
+    - name: "password"
+      prompt: "Enter new password for user pi"
+      private: yes

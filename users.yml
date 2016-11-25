@@ -1,0 +1,13 @@
+- hosts: all
+  become: true
+
+  roles:
+    - users
+
+  vars_files: 
+    - group_vars/env.yml
+
+  vars_prompt:
+    - name: "password"
+      prompt: "Enter new password for user pi"
+      private: yes

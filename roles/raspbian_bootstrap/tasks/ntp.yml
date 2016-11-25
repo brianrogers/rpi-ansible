@@ -1,0 +1,18 @@
+---
+
+- name: ASSERT | validated package
+  assert:
+    that: 'rpi_ntp_pkg == "openntpd" or rpi_ntp_pkg == "ntp"'
+
+- name: APT | Install NTP daemon
+  apt: pkg={{ rpi_ntp_pkg }} state=present
+
+- name: TEMPLATE | Deploy OpenNTPd configuration file
+  template: src=etc/openntpd/ntpd.conf.j2 dest=/etc/openntpd/ntpd.conf
+  notify: restart openntpd
+  when: rpi_ntp_pkg == 'openntpd'
+
+- name: TEMPLATE | Deploy NTPd configuration file
+  template: src=etc/ntp.conf.j2 dest=/etc/ntp.conf
+  notify: restart ntp
+  when: rpi_ntp_pkg == 'ntp'

@@ -1,0 +1,17 @@
+---
+
+# Force jessie (lsb-release with bad configuration)
+ansible_distribution_release: 'jessie'
+
+# We can't set hostname
+rpi_set_hostname: false
+
+# Hummm really?
+rpi_use_systemd: false
+
+rpi_apt_default_host: 'packages.devuan.org'
+rpi_repo_new:
+  - "http://{{ rpi_apt_default_host }}/merged {{ ansible_distribution_release }} {{ rpi_apt_components }}"
+  - "http://{{ rpi_apt_default_host }}/merged {{ ansible_distribution_release }}-updates {{ rpi_apt_components }}"
+  - "http://{{ rpi_apt_default_host }}/merged {{ ansible_distribution_release }}-backports main"
+#  - "http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ rpi_apt_components }}"

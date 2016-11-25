@@ -1,0 +1,4 @@
+---
+
+  - name: ping boxen
+    ping:

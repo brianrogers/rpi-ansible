@@ -1,0 +1,3 @@
+---
+- name: UPDATE-ALTERNATIVE | Vim is my main editor
+  alternatives: name=editor path={{ rpi_alternative_editor }}

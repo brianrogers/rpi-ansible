@@ -1,0 +1,7 @@
+---
+
+rpi_repo_new:
+  - "http://{{ rpi_apt_default_host }}/debian {{ ansible_distribution_release }} {{ rpi_apt_components }}"
+  - "http://{{ rpi_apt_default_host }}/debian {{ ansible_distribution_release }}-updates {{ rpi_apt_components }}"
+  - "http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ rpi_apt_components }}"
+  - "http://{{ rpi_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
