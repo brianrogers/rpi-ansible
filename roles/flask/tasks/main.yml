@@ -1,0 +1,6 @@
+---
+ - name: Install Flask
+   shell: sudo pip install flask
+
+ - name: Install uwsgi
+   shell: sudo pip install uwsgi

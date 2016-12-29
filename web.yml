@@ -5,3 +5,4 @@
     - group_vars/env.yml
   roles:
     - nginx
+    - flask
